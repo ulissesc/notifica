@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  titulo: MyString
+  conteudo: MyText
+  grupo_notificacao: 
+  subgrupo_notificacao: 
+  tipo: MyString
+  data_visualizacao: 2013-05-03
+  manter_visivel: false
+
+two:
+  titulo: MyString
+  conteudo: MyText
+  grupo_notificacao: 
+  subgrupo_notificacao: 
+  tipo: MyString
+  data_visualizacao: 2013-05-03
+  manter_visivel: false
