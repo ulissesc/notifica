@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 Notifica::Application.routes.draw do
+  get "notificacao" => "notificacao#index"
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -52,11 +54,19 @@ Notifica::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'notificacao#index'
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  get "notificacao/notifica/:id(.:format)" => "notificacao#notifica"
+  get "notificacao/load_js/:grupo/:subgrupo(.:format)" => "notificacao#load_js"
+  get "notificacao/load_js/:grupo(.:format)" => "notificacao#load_js"
+
+  get "notificacao/show_notificacoes/:grupo/:subgrupo" => "notificacao#show_notificacoes"
+  get "notificacao/show_notificacoes/:grupo" => "notificacao#show_notificacoes"
+  get "notificacao/visualizado/:id" => "notificacao#visualizado"
+  
 end

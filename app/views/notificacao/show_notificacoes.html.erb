@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<%= stylesheet_link_tag    "bootstrap.min", :media => "all" %>
+	<title><%= @notificacoes.count %> notificações</title>  	
+</head>
+<body>
+
+<div class="lista_notificacao">
+	
+	<% @notificacoes.each do |notificacao| %>
+		<div class="notificacao">
+			<%= notificacao.conteudo.html_safe %>
+
+			<% if notificacao.data_visualizacao %>
+				<span class="visualizado">visualizado em: <%= notificacao.data_visualizacao %></span>
+			<% else %>
+				<a class="visualizado" href="#" data-url='<%= "/notificacao/visualizado/#{notificacao.id}" %>'>Visualizado</a>
+			<% end %>
+
+		</div>
+		<hr/>
+	<% end %>
+
+</div>
+
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<script>
+
+	$(document).ready(function() {
+	  
+	  $(".visualizado").each(function(index, elem){
+	  	$(elem).click(function(){
+	  		 $.ajax( $(elem).attr('data-url') )
+    			.done(function() { alert("success"); })
+    			.fail(function() { alert("error"); })
+	  	});
+	  });
+
+	});
+
+</script>
+
+</body>
+</html>
+
+
+
+
+

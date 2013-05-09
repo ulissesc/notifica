@@ -1,0 +1,33 @@
+$(function() {
+	
+	createStyleSheet("<%= request.protocol + request.host_with_port %>/assets/bootstrap.css?body=1");
+	// createStyleSheet("<%= request.protocol + request.host_with_port %>/assets/bootstrap-responsive.min.css?body=1");
+
+  	var noti = '<a class="" id="btn_notificacao">Notificações<span class="badge badge-important"><%= @notificacoes.count %></span> </a>';
+
+  	$('#notification_bar').html(noti);
+
+	$.getScript("<%= request.protocol + request.host_with_port %>/assets/bootstrap.min.js?body=1", afterLoadJS); 
+
+	function afterLoadJS(){
+		$('#btn_notificacao').popover({
+  			title: 'Titulo',
+  			content: "<iframe allowtransparency='true' width='100%' height='100%;' frameBorder='0' border='0px' src='<%= request.protocol + request.host_with_port %>/notificacao/show_notificacoes/<%= params["grupo"]%>/<%= params["subgrupo"]%>'></iframe>",
+  			html: 'true',
+  			placement: 'bottom',
+  			animation: 'true'
+  		});
+	};
+
+  	 function createStyleSheet(style){
+		if (document.createStyleSheet){
+		    document.createStyleSheet("'" + style + "'");
+		}
+		else {
+		    $("head").append($("<link rel='stylesheet' href='" + style + "' type='text/css' media='screen' />"));
+		}
+	};
+  	
+});
+
+

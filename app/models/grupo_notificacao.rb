@@ -1,9 +1,11 @@
 # -*- encoding : utf-8 -*-
 class GrupoNotificacao < ActiveRecord::Base
-  attr_accessible :descricao
+  attr_accessible :descricao, :identificador
+
+  validates :identificador, :uniqueness => true
 
   def name
-  	self.descricao
+  	"#{self.descricao} | #{self.identificador}"
   end
 
 end

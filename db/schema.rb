@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130504144813) do
+ActiveRecord::Schema.define(:version => 20130506175938) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -48,8 +48,9 @@ ActiveRecord::Schema.define(:version => 20130504144813) do
 
   create_table "grupo_notificacaos", :force => true do |t|
     t.string   "descricao"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "identificador"
   end
 
   create_table "notificacaos", :force => true do |t|
@@ -69,8 +70,9 @@ ActiveRecord::Schema.define(:version => 20130504144813) do
 
   create_table "subgrupo_notificacaos", :force => true do |t|
     t.string   "descricao"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "identificador"
   end
 
 end
