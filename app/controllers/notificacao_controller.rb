@@ -37,8 +37,8 @@ class NotificacaoController < ApplicationController
     
     
     query = Notificacao.joins(:grupo_notificacao, :subgrupo_notificacao)
-    query = query.where("grupo_notificacaos.identificador = ?", @grupo.identificador) unless @grupo.nil?
-    query = query.where("subgrupo_notificacaos.identificador = ?", @subgrupo.identificador)  unless @subgrupo.nil?
+    query = query.where("grupo_notificacaos.identificador = ?", params[:grupo]) if params[:grupo]
+    query = query.where("subgrupo_notificacaos.identificador = ?", params[:subgrupo]) if params[:subgrupo]
     query = query.sao_visiveis
     query.order("created_at DESC")
     

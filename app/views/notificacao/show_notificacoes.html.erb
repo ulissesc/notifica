@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<%= stylesheet_link_tag "bootstrap", :media => "all" %>
+	<%= stylesheet_link_tag "notificacao", :media => "all" %>
 
-	<%= stylesheet_link_tag    "bootstrap.min", :media => "all" %>
-	<title><%= @notificacoes.count %> notificações</title>  	
+	<title><%= humanizando( @notificacoes ) %></title>  	
 </head>
 <body>
 
 <div class="lista_notificacao">
 	
 	<% @notificacoes.each do |notificacao| %>
-		<div class="notificacao">
+		<div class="notificacao <%= notificacao.data_visualizacao ? 'notificacoes-lidas' : 'notificacoes-nao-lidas' %>">
 			<%= notificacao.conteudo.html_safe %>
 
 			<% if notificacao.data_visualizacao %>
-				<span class="visualizado">visualizado em: <%= notificacao.data_visualizacao %></span>
+				<span class="data-visualizado"> visualizado à <%= time_ago_in_words( notificacao.data_visualizacao ) %></span>
 			<% else %>
-				<a class="visualizado" href="#" data-url='<%= "/notificacao/visualizado/#{notificacao.id}" %>'>Visualizado</a>
+				<a class="visualizado-btn" href="#" data-url='<%= "/notificacao/visualizado/#{notificacao.id}" %>'>ok</a>
 			<% end %>
 
 		</div>
@@ -32,15 +33,22 @@
 
 	$(document).ready(function() {
 	  
-	  $(".visualizado").each(function(index, elem){
+	  $(".visualizado-btn").each(function(index, elem){
 	  	$(elem).click(function(){
 	  		 $.ajax( $(elem).attr('data-url') )
-    			.done(function() { alert("success"); })
-    			.fail(function() { alert("error"); })
+    			.done(function() {
+    				$(elem).parent('div.notificacao').removeClass('notificacoes-nao-lidas').addClass('notificacoes-lidas');
+    				$(elem).html('pronto');
+    			})
+    			.fail(function() { alert("Erro ao comunicar visualização."); })
 	  	});
 	  });
 
 	});
+
+  resizeIframe = function(iframe) {
+    iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
+  }
 
 </script>
 
