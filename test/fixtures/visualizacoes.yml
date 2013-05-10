@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  data_hora: 2013-05-10 16:29:39
+  notificacao: 
+  destinatario: 
+
+two:
+  data_hora: 2013-05-10 16:29:39
+  notificacao: 
+  destinatario: 

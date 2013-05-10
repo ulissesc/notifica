@@ -3,7 +3,7 @@ $(function() {
 	createStyleSheet("<%= request.protocol + request.host_with_port %>/assets/bootstrap.css?body=1");
 	// createStyleSheet("<%= request.protocol + request.host_with_port %>/assets/bootstrap-responsive.min.css?body=1");
 
-  	var noti = '<a class="botao_informacao_notificacao" id="informacao_notificacao"><%= humanizando( @notificacoes ) %></a>';
+  	var noti = '<a class="botao_informacao_notificacao" id="informacao_notificacao"><span class="numero_notificacoes"><%= @notificacoes.count %></span><%= plural( @notificacoes ) %></a>';
 
   	$('#notification_bar').html(noti);
 
@@ -11,8 +11,8 @@ $(function() {
 
 	function afterLoadJS(){
 		$('#informacao_notificacao').popover({
-  			title: 'Titulo',
-  			content: "<iframe allowtransparency='true' width='100%' onload='this.height = this.contentWindow.document.body.scrollHeight' frameBorder='0' border='0px' src='<%= request.protocol + request.host_with_port %>/notificacao/show_notificacoes/<%= params["grupo"]%>/<%= params["subgrupo"]%>'></iframe>",
+  			title: '<%= humanizando( @notificacoes ) %>',
+  			content: "<iframe allowtransparency='true' width='100%' onload='this.height = this.contentWindow.document.body.scrollHeight' frameBorder='0' border='0px' src='<%= request.protocol + request.host_with_port %>/notificacao/show_notificacoes/<%= params["grupo"]%>/<%= params["destinatario"]%>'></iframe>",
   			html: 'true',
   			placement: 'bottom',
   			animation: 'true'

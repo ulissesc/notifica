@@ -11,4 +11,14 @@ def humanizando(notificacoes)
 	end
 end
 
+def plural(notificacoes)
+	if notificacoes.count == 0
+		"notificações"
+	elsif notificacoes.count == 1
+		"notificação"
+	else
+		"notificações"
+	end
+end
+
 end

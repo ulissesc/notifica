@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506175938) do
+ActiveRecord::Schema.define(:version => 20130510192939) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(:version => 20130506175938) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "destinatarios", :force => true do |t|
+    t.string   "descricao"
+    t.string   "identificador"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "grupo_notificacaos", :force => true do |t|
     t.string   "descricao"
     t.datetime "created_at",    :null => false
@@ -68,11 +75,38 @@ ActiveRecord::Schema.define(:version => 20130506175938) do
   add_index "notificacaos", ["grupo_notificacao_id"], :name => "index_notificacaos_on_grupo_notificacao_id"
   add_index "notificacaos", ["subgrupo_notificacao_id"], :name => "index_notificacaos_on_subgrupo_notificacao_id"
 
+  create_table "notificacoes_destinatarios", :force => true do |t|
+    t.integer "notificacao_id"
+    t.integer "destinatario_id"
+  end
+
   create_table "subgrupo_notificacaos", :force => true do |t|
     t.string   "descricao"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.string   "identificador"
   end
+
+  create_table "visualizacaos", :force => true do |t|
+    t.datetime "data_hora"
+    t.integer  "notificacao_id"
+    t.integer  "destinatario_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "visualizacaos", ["destinatario_id"], :name => "index_visualizacaos_on_destinatario_id"
+  add_index "visualizacaos", ["notificacao_id"], :name => "index_visualizacaos_on_notificacao_id"
+
+  create_table "visualizacoes", :force => true do |t|
+    t.datetime "data_hora"
+    t.integer  "notificacao_id"
+    t.integer  "destinatario_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "visualizacoes", ["destinatario_id"], :name => "index_visualizacoes_on_destinatario_id"
+  add_index "visualizacoes", ["notificacao_id"], :name => "index_visualizacoes_on_notificacao_id"
 
 end

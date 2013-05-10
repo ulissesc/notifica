@@ -62,11 +62,11 @@ Notifica::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   get "notificacao/notifica/:id(.:format)" => "notificacao#notifica"
-  get "notificacao/load_js/:grupo/:subgrupo(.:format)" => "notificacao#load_js"
+  get "notificacao/load_js/:grupo/:destinatario(.:format)" => "notificacao#load_js"
   get "notificacao/load_js/:grupo(.:format)" => "notificacao#load_js"
 
-  get "notificacao/show_notificacoes/:grupo/:subgrupo" => "notificacao#show_notificacoes"
+  get "notificacao/show_notificacoes/:grupo/:destinatario" => "notificacao#show_notificacoes"
   get "notificacao/show_notificacoes/:grupo" => "notificacao#show_notificacoes"
-  get "notificacao/visualizado/:id" => "notificacao#visualizado"
+  get "notificacao/visualizado/:notificacao/:destinatario" => "notificacao#visualizado"
   
 end

@@ -13,6 +13,7 @@ ActiveAdmin.register Notificacao do
     		f.input :grupo_notificacao
     		f.input :subgrupo_notificacao
     		f.input :conteudo
+            f.input :destinatarios, :as => :check_boxes
     		f.input :data_visualizacao
     		f.input :tipo, :as => :select, :collection => ["NORMAL", "MÉDIA", "ALTA"]
     		f.input :manter_visivel 

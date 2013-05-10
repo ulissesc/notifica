@@ -9,15 +9,9 @@ class NotificacaoController < ApplicationController
   def load_js
 
   puts "GRUPO #{params[:grupo]}" unless params[:grupo].nil?
-  puts "SUBGRUPO #{params[:subgrupo]}"  unless params[:subgrupo].nil?
+  puts "DESTINATARIO #{params[:destinatario]}"  unless params[:destinatario].nil?
 
-  query = Notificacao.joins(:grupo_notificacao, :subgrupo_notificacao)
-  query = query.where("grupo_notificacaos.identificador = ?", params[:grupo] ) if params[:grupo]
-  query = query.where("subgrupo_notificacaos.identificador = ?", params[:subgrupo]) if params[:subgrupo]
-  query = query.sao_visiveis
-  query.order("created_at DESC")
-
-  @notificacoes = query.all
+  @notificacoes = Notificacao.buscar_notificacoes_para(params[:grupo], params[:destinatario])
 
   puts "TOTAL DE NOTIFICACOES #{ @notificacoes.count }"
 
@@ -28,34 +22,29 @@ class NotificacaoController < ApplicationController
 
 
   def show_notificacoes
+    puts "GRUPO #{params[:grupo]}" unless params[:grupo].nil?
+    puts "DESTINATARIO #{params[:destinatario]}"  unless params[:destinatario].nil?
 
-  	@grupo = GrupoNotificacao.find_by_identificador( params[:grupo] )
-  	@subgrupo = SubgrupoNotificacao.find_by_identificador( params[:subgrupo] ) if params[:subgrupo]
-
-    puts "GRUPO #{@grupo.identificador}" unless @grupo.nil?
-    puts "SUBGRUPO #{@subgrupo.identificador}"  unless @subgrupo.nil?
-    
-    
-    query = Notificacao.joins(:grupo_notificacao, :subgrupo_notificacao)
-    query = query.where("grupo_notificacaos.identificador = ?", params[:grupo]) if params[:grupo]
-    query = query.where("subgrupo_notificacaos.identificador = ?", params[:subgrupo]) if params[:subgrupo]
-    query = query.sao_visiveis
-    query.order("created_at DESC")
-    
-
-    @notificacoes = query.all
+    @notificacoes = Notificacao.buscar_notificacoes_para(params[:grupo], params[:destinatario])
 
   	render :layout => false
   end
 
 
+
+
   def visualizado
 
-   	@notificacao = Notificacao.find(params[:id])
-   	@notificacao.data_visualizacao = Time.now
+   	@notificacao = Notificacao.find(params[:notificacao])
+    @destinatario = Destinatario.find(params[:destinatario])
+
+    @visualizacao = Visualizacao.new 
+    @visualizacao.notificacao = @notificacao
+    @visualizacao.destinatario = @destinatario
+   	@visualizacao.data_hora = Time.now
    	
-   	if @notificacao.save
-   		render :json => @notificacao
+   	if @visualizacao.save
+   		render :json => @visualizacao
    	else
    		render :text => "falha", :status => 403
    	end
