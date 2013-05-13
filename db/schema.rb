@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510192939) do
+ActiveRecord::Schema.define(:version => 20130513123628) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "label"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -41,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20130510192939) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "account_id"
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -51,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20130510192939) do
     t.string   "identificador"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "account_id"
   end
 
   create_table "grupo_notificacaos", :force => true do |t|
@@ -58,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20130510192939) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.string   "identificador"
+    t.integer  "account_id"
   end
 
   create_table "notificacaos", :force => true do |t|
@@ -70,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20130510192939) do
     t.boolean  "manter_visivel"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+    t.integer  "account_id"
   end
 
   add_index "notificacaos", ["grupo_notificacao_id"], :name => "index_notificacaos_on_grupo_notificacao_id"
@@ -78,13 +88,6 @@ ActiveRecord::Schema.define(:version => 20130510192939) do
   create_table "notificacoes_destinatarios", :force => true do |t|
     t.integer "notificacao_id"
     t.integer "destinatario_id"
-  end
-
-  create_table "subgrupo_notificacaos", :force => true do |t|
-    t.string   "descricao"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "identificador"
   end
 
   create_table "visualizacaos", :force => true do |t|
@@ -104,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20130510192939) do
     t.integer  "destinatario_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "account_id"
   end
 
   add_index "visualizacoes", ["destinatario_id"], :name => "index_visualizacoes_on_destinatario_id"

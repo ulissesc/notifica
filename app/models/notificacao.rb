@@ -5,13 +5,16 @@ class Notificacao < ActiveRecord::Base
   scope	:nao_visualizados, where("notificacaos.data_visualizacao IS NULL")
   scope	:sao_visiveis, where(" (notificacaos.data_visualizacao IS NULL or notificacaos.manter_visivel) ")
 
+  # MULTI TENANT
+  belongs_to :account
+  acts_as_tenant(:account)
+
   belongs_to :grupo_notificacao
-  belongs_to :subgrupo_notificacao
   has_and_belongs_to_many :destinatarios, :join_table => "notificacoes_destinatarios", :class_name => "Destinatario"
   has_many :visualizacoes
 
   attr_accessible :conteudo, :data_visualizacao, :manter_visivel, :tipo, :titulo, 
-  	:grupo_notificacao_id,  :subgrupo_notificacao_id, :destinatario_ids
+  	:grupo_notificacao_id, :destinatario_ids
 
   def display_name
   	self.titulo

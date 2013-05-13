@@ -36,7 +36,7 @@ class NotificacaoController < ApplicationController
   def visualizado
 
    	@notificacao = Notificacao.find(params[:notificacao])
-    @destinatario = Destinatario.find(params[:destinatario])
+    @destinatario = Destinatario.find_by_identificador(params[:destinatario])
 
     @visualizacao = Visualizacao.new 
     @visualizacao.notificacao = @notificacao

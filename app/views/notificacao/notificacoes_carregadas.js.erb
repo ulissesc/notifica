@@ -3,7 +3,7 @@ $(function() {
 	createStyleSheet("<%= request.protocol + request.host_with_port %>/assets/bootstrap.css?body=1");
 	// createStyleSheet("<%= request.protocol + request.host_with_port %>/assets/bootstrap-responsive.min.css?body=1");
 
-  	var noti = '<a class="botao_informacao_notificacao" id="informacao_notificacao"><span class="numero_notificacoes"><%= @notificacoes.count %></span><%= plural( @notificacoes ) %></a>';
+  	var noti = '<a class="botao_informacao_notificacao" id="informacao_notificacao"><span class="numero_notificacoes"><%= @notificacoes.count %></span> <%= plural( @notificacoes ) %></a>';
 
   	$('#notification_bar').html(noti);
 
