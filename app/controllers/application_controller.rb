@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :load_current_tenant
 
   def load_current_tenant
-    current_account = current_admin_user.account
+    current_account = current_admin_user.account rescue nil
     set_current_tenant(current_account)
   end
 
