@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDestinatarios < ActiveRecord::Migration
   def change
     create_table :destinatarios do |t|

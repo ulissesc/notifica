@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RelacionamentoNotificacaoDestinatario < ActiveRecord::Migration
 	def change
 	    create_table :notificacoes_destinatarios do |t|

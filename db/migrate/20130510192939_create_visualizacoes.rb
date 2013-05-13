@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateVisualizacoes < ActiveRecord::Migration
   def change
     create_table :visualizacoes do |t|

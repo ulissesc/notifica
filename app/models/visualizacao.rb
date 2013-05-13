@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Visualizacao < ActiveRecord::Base
   
   belongs_to :account

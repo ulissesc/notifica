@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ChangeDataTypeNotificacaoDataNotificacao < ActiveRecord::Migration
   def up
   	change_table :notificacaos do |t|
