@@ -1,2 +1,2 @@
 == Notifica
-  Criar notificações para webapps por grupo ou subgrupo de usuários
+  Criar notificações para webapps por grupo e destinatários (usuários destinatários)
