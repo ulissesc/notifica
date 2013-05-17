@@ -6,7 +6,7 @@
 
         <p>e o seguinte JS:</p>
         <pre class="prettyprint lang-scm">
-          <%= h '<script src="notifica/<ACCOUNT_ID>/<DESTINATARIO_1>,<DESTINATARIO_2>/<USUARIO>" ></script>' %>
+          <%= h "<script src='#{request.protocol + request.host_with_port}/notifica/<ACCOUNT_ID>/<DESTINATARIO_1>,<DESTINATARIO_2>/<USUARIO>' ></script>" %>
         </pre>
 
 
