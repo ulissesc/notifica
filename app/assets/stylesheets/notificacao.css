@@ -20,7 +20,18 @@ body {
 .notificacoes-lidas {
     background-color: white;
  }
+ 
+ .tipo-normal{ }
+.tipo-medio{
+    border-left: 2px solid #FFFF66;
+ }
+
+.tipo-alto{
+  border-left: 2px solid #FF3333;
+ }
+
  .data-visualizado{
+  font-size: 12px;
  	color: lightgray;
  }
  .visualizado-btn{

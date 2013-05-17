@@ -21,4 +21,14 @@ def plural(notificacoes)
 	end
 end
 
+def class_por_tipo(notificacao)
+	if notificacao.tipo == "ALTA"
+		"tipo-alto"
+	elsif notificacao.tipo == "MEDIA"
+		"tipo-medio"
+	else
+		"tipo-normal"
+	end
+end
+
 end

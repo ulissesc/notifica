@@ -5,10 +5,37 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
-<%= yield %>
+
+    <!-- Part 1: Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="page-header">
+            <h1>Notifica</h1>
+            <div class="pull-right">
+              <a href="admin">Logar</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <p class="lead">
+            Adicione notificações em seu site
+        </p>
+        
+        <%= yield %>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">beta</p>
+      </div>
+    </div>
+
+
 
 </body>
 </html>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513125129) do
+ActiveRecord::Schema.define(:version => 20130515192614) do
 
   create_table "accounts", :force => true do |t|
     t.string   "label"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130513125129) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "account_id"
+    t.string   "user_type"
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -75,7 +76,6 @@ ActiveRecord::Schema.define(:version => 20130513125129) do
     t.integer  "grupo_notificacao_id"
     t.integer  "subgrupo_notificacao_id"
     t.string   "tipo"
-    t.datetime "data_visualizacao"
     t.boolean  "manter_visivel"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20130513125129) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "account_id"
+    t.string   "visto_por"
   end
 
   add_index "visualizacoes", ["destinatario_id"], :name => "index_visualizacoes_on_destinatario_id"

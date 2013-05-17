@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%= stylesheet_link_tag "bootstrap", :media => "all" %>
+	<%= stylesheet_link_tag "bootstrap.popover", :media => "all" %>
 	<%= stylesheet_link_tag "notificacao", :media => "all" %>
 
 	<title><%= humanizando( @notificacoes ) %></title>  	
@@ -11,13 +11,13 @@
 <div class="lista_notificacao">
 	
 	<% @notificacoes.each do |notificacao| %>
-		<div class="notificacao <%= notificacao.data_visualizacao ? 'notificacoes-lidas' : 'notificacoes-nao-lidas' %>">
+		<div class="notificacao <%= notificacao.data_visualizado_por( @from ) ? 'notificacoes-lidas' : 'notificacoes-nao-lidas' %> <%= class_por_tipo( notificacao ) %>">
 			<%= notificacao.conteudo.html_safe %>
 
-			<% if notificacao.data_visualizacao %>
-				<span class="data-visualizado"> visualizado à <%= time_ago_in_words( notificacao.data_visualizacao ) %></span>
+			<% if notificacao.data_visualizado_por( @from ) %>
+				<span class="data-visualizado"> visto à <%= time_ago_in_words( notificacao.data_visualizado_por( @from ) ) %></span>
 			<% else %>
-				<a class="visualizado-btn" href="#" data-url='<%= "/notificacao/visualizado/#{notificacao.id}/#{params['destinatario']}" %>'>ok</a>
+				<a class="visualizado-btn" href="#" data-url='<%= "/visualizado/#{notificacao.account.id}/#{notificacao.id}/#{@from}" %>'>ok</a>
 			<% end %>
 
 		</div>
@@ -38,7 +38,8 @@
 	  		 $.ajax( $(elem).attr('data-url') )
     			.done(function() {
     				$(elem).parent('div.notificacao').removeClass('notificacoes-nao-lidas').addClass('notificacoes-lidas');
-    				$(elem).html('pronto');
+    				$(elem).html('visualizado');
+    				$(elem).hide();
     			})
     			.fail(function() { alert("Erro ao comunicar visualização."); })
 	  	});

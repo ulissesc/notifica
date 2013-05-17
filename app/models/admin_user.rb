@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
 class AdminUser < ActiveRecord::Base
+
+  ADMIN = "ADMIN"
+  USER = "USER"
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -8,6 +12,11 @@ class AdminUser < ActiveRecord::Base
 
   belongs_to :account
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :account_ids
+
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :user_type, :account_id
   # attr_accessible :title, :body
+
+  def admin?
+  	self.user_type == ADMIN
+  end
 end

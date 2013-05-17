@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   def load_current_tenant
     current_account = current_admin_user.account rescue nil
+    current_account = Account.find(params[:account_id]) if current_account.nil? rescue nil
     set_current_tenant(current_account)
   end
 

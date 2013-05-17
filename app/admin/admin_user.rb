@@ -1,5 +1,8 @@
 # -*- encoding : utf-8 -*-
 ActiveAdmin.register AdminUser do     
+  menu :label => "Usuários" 
+  menu :if => proc{ current_admin_user.admin? }
+
   index do                            
     column :email                     
     column :current_sign_in_at        
@@ -15,7 +18,8 @@ ActiveAdmin.register AdminUser do
       f.input :email                  
       f.input :password               
       f.input :password_confirmation
-      f.input :account  
+      f.input :user_type, :as => :select, :collection => ["ADMIN", "USER"] if current_admin_user.admin?
+      f.input :account if current_admin_user.admin? 
     end                               
     f.actions                         
   end                                 

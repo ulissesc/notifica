@@ -1,22 +1,28 @@
 $(function() {
 	
-	createStyleSheet("<%= request.protocol + request.host_with_port %>/assets/bootstrap.css?body=1");
+	createStyleSheet("<%= request.protocol + request.host_with_port %>/assets/bootstrap.popover.css?body=1");
 	// createStyleSheet("<%= request.protocol + request.host_with_port %>/assets/bootstrap-responsive.min.css?body=1");
 
   	var noti = '<a class="botao_informacao_notificacao" id="informacao_notificacao"><span class="numero_notificacoes"><%= @notificacoes.count %></span> <%= plural( @notificacoes ) %></a>';
 
   	$('#notification_bar').html(noti);
 
-	$.getScript("<%= request.protocol + request.host_with_port %>/assets/bootstrap.min.js?body=1", afterLoadJS); 
+	$.getScript("<%= request.protocol + request.host_with_port %>/assets/bootstrap.popover.min.js?body=1", afterLoadJS); 
 
 	function afterLoadJS(){
 		$('#informacao_notificacao').popover({
   			title: '<%= humanizando( @notificacoes ) %>',
-  			content: "<iframe allowtransparency='true' width='100%' onload='this.height = this.contentWindow.document.body.scrollHeight' frameBorder='0' border='0px' src='<%= request.protocol + request.host_with_port %>/notificacao/show_notificacoes/<%= params["grupo"]%>/<%= params["destinatario"]%>'></iframe>",
+  			content: "<iframe id='notification-iframe' allowtransparency='true' width='100%' onload='this.height = this.contentWindow.document.body.scrollHeight' frameBorder='0' border='0px' src='<%= request.protocol + request.host_with_port %>/mostrar_notificacoes/<%= @account_id %>/<%= @to %>/<%= @from %>'></iframe>",
   			html: 'true',
   			placement: 'bottom',
   			animation: 'true'
   		});
+  		/*$('#informacao_notificacao').on('click', function(){
+  			$(this).contents().find('.visualizado-btn').on('click', function(){
+  		 	alert(this);
+  		 });
+  		});
+  		*/
 	};
 
   	 function createStyleSheet(style){

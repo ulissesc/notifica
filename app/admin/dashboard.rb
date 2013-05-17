@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 ActiveAdmin.register_page "Dashboard" do
 
-  menu :priority => 1, :label => proc{ I18n.t("active_admin.dashboard") }
+  menu :priority => 2, :label => proc{ I18n.t("active_admin.dashboard") }
 
   content :title => proc{ I18n.t("active_admin.dashboard") } do
     
@@ -9,25 +9,26 @@ ActiveAdmin.register_page "Dashboard" do
     # Here is an example of a simple dashboard with columns and panels.
     #
     columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
+      column do
+        panel "AccountID" do
+           ul do
+              li h3 "Seu AccountID é '#{ current_admin_user.account.id }'"
+          end
+        end
+      end
+    end
 
+    columns do
       column do
         panel "Últimas notificações visualizadas" do
            ul do
             Visualizacao.all.map do |record|
-              li "#{record.destinatario.identificador} - #{record.data_hora}"
+              li "Notificado '#{record.visto_por}' sobre '#{record.notificacao.titulo}' às #{record.data_hora}"
             end
           end
         end
       end
     end
+
   end # content
 end

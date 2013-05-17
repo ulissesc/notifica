@@ -1,32 +1,62 @@
 # -*- encoding : utf-8 -*-
 class Notificacao < ActiveRecord::Base
 
-  scope	:visualizados, where("notificacaos.data_visualizacao IS NOT NULL")
-  scope	:nao_visualizados, where("notificacaos.data_visualizacao IS NULL")
-  scope	:sao_visiveis, where(" (notificacaos.data_visualizacao IS NULL or notificacaos.manter_visivel) ")
-
   # MULTI TENANT
   belongs_to :account
   acts_as_tenant(:account)
 
   belongs_to :grupo_notificacao
   has_and_belongs_to_many :destinatarios, :join_table => "notificacoes_destinatarios", :class_name => "Destinatario"
-  has_many :visualizacoes
+  has_many :visualizacoes, :dependent => :destroy
 
-  attr_accessible :conteudo, :data_visualizacao, :manter_visivel, :tipo, :titulo, 
-  	:grupo_notificacao_id, :destinatario_ids
+  attr_accessible :conteudo, :manter_visivel, :tipo, :titulo, :grupo_notificacao_id, :destinatario_ids
 
   def display_name
   	self.titulo
   end
 
 
-  def self.buscar_notificacoes_para(identificador_grupo_notificacao, identificador_destinatario=nil)
-    query = Notificacao.joins(:grupo_notificacao, :destinatarios)
-    query = query.where("grupo_notificacaos.identificador = ?", identificador_grupo_notificacao)
-    query = query.where("destinatarios.identificador = ?", identificador_destinatario) if identificador_destinatario
-    query = query.sao_visiveis
-    query.order("created_at DESC")
+  def self.buscar_notificacoes(destinatarios, from)
+
+    query = Notificacao.joins(:destinatarios)
+    
+    query = query.where("destinatarios.identificador in ( ? )", destinatarios.map(&:identificador))
+    query.order("notificacaos.created_at DESC")
+
+    notificacoes = []
+    query.all.each do |notificacao|
+      if notificacao.manter_visivel
+        notificacoes << notificacao
+      else
+        if notificacao.visualizacoes.where(:visto_por => from).empty?
+          notificacoes << notificacao
+        end
+      end
+    end
+
+    notificacoes
+  end
+
+
+  def visualizacoes_destinatario(destinatario_identificador)
+    data_hora = nil
+    self.visualizacoes.each do |visualizacao|
+      if visualizacao.destinatario.identificador == destinatario_identificador
+       data_hora = visualizacao.data_hora
+      end
+    end
+    data_hora
+  end
+
+
+  def data_visualizado_por(from)
+    data_hora = nil
+    self.visualizacoes.each do |visualizacao|
+      if visualizacao.visto_por == from
+       data_hora = visualizacao.data_hora
+      end
+    end
+    data_hora
   end
 
 end

@@ -2,10 +2,7 @@
 ActiveAdmin.register Notificacao do
     menu :label => "Notificações"
 
-    scope :all, :default => true
-    # scope :nao_visualizados
-    # scope :visualizados
-	
+    scope :all
 
 	form do |f|
     	f.inputs do
@@ -13,8 +10,7 @@ ActiveAdmin.register Notificacao do
     		f.input :grupo_notificacao
     		f.input :conteudo
             f.input :destinatarios, :as => :check_boxes
-    		# f.input :data_visualizacao
-    		f.input :tipo, :as => :select, :collection => ["NORMAL", "MÉDIA", "ALTA"]
+    		f.input :tipo, :as => :select, :collection => ["NORMAL", "MEDIA", "ALTA"]
     		f.input :manter_visivel 
     	end
     	f.actions
@@ -23,7 +19,6 @@ ActiveAdmin.register Notificacao do
     index do
         column("Título", :titulo)
         column("Grupo", :grupo_notificacao)
-        # column("Data/Hora Visualização", :data_visualizacao)
         column("Tipo", :tipo)
         default_actions
     end
