@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 ActiveAdmin.register Visualizacao do
-	menu :label => "Visualizações"  
+	menu :label => "Visualizações" 
+	filter :data_hora 
+	filter :visto_por    
 
 	form do |f|                         
 	    f.inputs "Visualizações" do       

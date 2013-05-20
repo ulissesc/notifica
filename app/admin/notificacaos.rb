@@ -1,6 +1,10 @@
 # -*- encoding : utf-8 -*-
 ActiveAdmin.register Notificacao do
     menu :label => "Notificações"
+    filter :titulo
+    filter :grupo_notificacao
+    filter :tipo, :as => :check_boxes, :collection => ["NORMAL", "MEDIA", "ALTA"]
+    filter :conteudo
 
     scope :all
 

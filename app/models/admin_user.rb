@@ -19,4 +19,5 @@ class AdminUser < ActiveRecord::Base
   def admin?
   	self.user_type == ADMIN
   end
+  
 end

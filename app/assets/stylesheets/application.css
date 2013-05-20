@@ -14,6 +14,7 @@
  *= require bootstrap.min
  *= require bootstrap-responsive
  *= require home
+ *= require formtastic
  */
 
 body {

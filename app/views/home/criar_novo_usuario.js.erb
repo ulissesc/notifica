@@ -1,0 +1,6 @@
+
+<% if @novo_usuario.valid? %>
+	window.location = "/admin/login";
+<% else %>
+	$('.form_usuario').html('<%= escape_javascript( render  "form_usuario" ) %>');
+<% end %>

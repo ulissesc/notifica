@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddAccountToElements < ActiveRecord::Migration
   def change
 

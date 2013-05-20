@@ -12,7 +12,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "AccountID" do
            ul do
-              li h3 "Seu AccountID é '#{ current_admin_user.account.id }'"
+              li h4 "Seu AccountID é '#{ current_admin_user.account.id rescue 'ERRO: sem AccontID' }'"
           end
         end
       end
@@ -23,7 +23,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Últimas notificações visualizadas" do
            ul do
             Visualizacao.all.map do |record|
-              li "Notificado '#{record.visto_por}' sobre '#{record.notificacao.titulo}' às #{record.data_hora}"
+              li "Notificado '#{record.visto_por}' sobre '#{record.notificacao.titulo rescue nil}' às #{record.data_hora}"
             end
           end
         end

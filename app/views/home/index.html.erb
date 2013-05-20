@@ -1,4 +1,5 @@
   
+
         <p>Adicione a seguinte div onde deseja que suas notificações apareçam:</p>
         <pre class="prettyprint lang-scm">
           <%= h '<div id="notification_bar"></div>' %>
@@ -6,13 +7,37 @@
 
         <p>e o seguinte JS:</p>
         <pre class="prettyprint lang-scm">
-          <%= h "<script src='#{request.protocol + request.host_with_port}/notifica/<ACCOUNT_ID>/<DESTINATARIO_1>,<DESTINATARIO_2>/<USUARIO>' ></script>" %>
+          <%= h "<script src='#{request.protocol + request.host_with_port}/notifica/<ACCOUNT_ID>/<DESTINATARIO_1>,<DESTINATARIO_2>.../<USUARIO>' ></script>" %>
+        </pre>
+
+        <p>exemplo:</p>
+        <pre class="prettyprint lang-scm">
+          
+          <%= h "ACCOUNT_ID: 123" %>
+          <%= h "DESTINATÁRIOS: sistemaX,usuario@email.com" %>
+          <%= h "VISTO POR: usuario@email.com" %>
+
+          <%= h "<script src='#{request.protocol + request.host_with_port}/notifica/123/sistemaX,usuario@email.com/usuario@email.com' ></script>" %>
+
         </pre>
 
 
-        <p>Veja o exemplo <a href="exemplo">clicando aqui</p>
+        <p>Veja o exemplo 
+            <a href="exemplo">aqui</a>
+        </p>
+
+
+        <hr/>
+
+      <div class="form_usuario">
+       <%= render 'form_usuario' %>
+      </div>
+
       </div>
 
       <div id="push"></div>
+
+
+
 
       <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=sunburst"></script>
