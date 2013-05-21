@@ -1,2 +1,6 @@
 == Notifica
-  Criar notificações para webapps por grupo e destinatários (usuários destinatários)
+  Criar notificações para webapps por destinatários (usuários destinatários)
+  
+== Exemplo
+  <div id="notification_bar"></div>
+  <script src="notifica/{account_key}/{destinatários}/{usuario_atual}"></script>
