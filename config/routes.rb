@@ -66,9 +66,11 @@ Notifica::Application.routes.draw do
 
 
   # EM USO ATUALMENTE
-  get "notifica/:account_id/:to/:from" => "notificacao#buscar_notificacoes"
-  get "mostrar_notificacoes/:account_id/:to/:from" => "notificacao#mostrar_notificacoes"
-  get "visualizado/:account_id/:notificacao/:from" => "notificacao#marcar_como_visualizado"
+  match "notifica/:account_key/:to/:from" => "notificacao#buscar_notificacoes", :constraints => { :to => /.*/ }
+
+  match  "mostrar_notificacoes/:account_key/:to/:from" => "notificacao#mostrar_notificacoes", :constraints => { :to => /.*/ }
+  match  "visualizado/:account_key/:notificacao/:from" => "notificacao#marcar_como_visualizado", :constraints => { :to => /.*/ }
+
   post "criar_novo_usuario" => "home#criar_novo_usuario", :as => :criar_novo_usuario
 
   

@@ -17,7 +17,7 @@
 			<% if notificacao.data_visualizado_por( @from ) %>
 				<span class="data-visualizado"> visto à <%= time_ago_in_words( notificacao.data_visualizado_por( @from ) ) %></span>
 			<% else %>
-				<a class="visualizado-btn" href="#" data-url='<%= "/visualizado/#{notificacao.account.id}/#{notificacao.id}/#{@from}" %>'>ok</a>
+				<a class="visualizado-btn" href="#" data-url='<%= "/visualizado/#{@account_id}/#{notificacao.id}/#{@from}" %>'>ok</a>
 			<% end %>
 
 		</div>

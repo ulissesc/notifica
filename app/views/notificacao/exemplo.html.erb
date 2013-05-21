@@ -1,6 +1,17 @@
 <h1>Exemplo de Notificação</h1>
 
 <a href="/">Home</a>
+
+<% usuario_rand = (0...10).map{ ('a'..'z').to_a[rand(26)] }.join %>
+<% conta_key = "asdasdasdasdadasdsds" %>
+<% destinatarios = "sistema_teste,usuario@teste.com,ulisses" %>
+
+<ul>
+	<li>Account Key: <%= conta_key %></li>
+	<li>Destinatários: <%= destinatarios %></li>
+	<li>Usuário ramdomico: <%= usuario_rand %></li>
+</ul>
+
 <div style="text-align: center">
 
 	<div id="notification_bar"></div>
@@ -9,5 +20,4 @@
 
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="notifica/1/sistema_teste,usuario1,ulisses/<%= (0...10).map{ ('a'..'z').to_a[rand(26)] }.join %>" ></script>
-
+<script src="notifica/<%= conta_key %>/<%= destinatarios %>/<%= usuario_rand %>" ></script>

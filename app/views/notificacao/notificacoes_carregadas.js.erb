@@ -6,6 +6,9 @@ $(function() {
   	var noti = '<a class="botao_informacao_notificacao" id="informacao_notificacao"><span class="numero_notificacoes"><%= @notificacoes.count %></span> <%= plural( @notificacoes ) %></a>';
 
   	$('#notification_bar').html(noti);
+    <% if not @current_account %>
+      $('#notification_bar').html("NENHUMA CONTA COM A CHAVE: <%= @account_id %>");
+    <% end %>
 
 	$.getScript("<%= request.protocol + request.host_with_port %>/assets/bootstrap.popover.min.js?body=1", afterLoadJS); 
 

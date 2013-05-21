@@ -9,17 +9,21 @@ class NotificacaoController < ApplicationController
 
 
   def buscar_notificacoes
-    puts "ACCOUNT ID:   #{params[:account_id]}" 
+    config_current_tenant
+
+    puts "ACCOUNT KEY:   #{params[:account_key]}" 
     puts "TO:   #{params[:to]}" 
     puts "FROM: #{params[:from]}"
 
-    @account_id = params[:account_id]
+    @account_id = params[:account_key]
     @to = params[:to]
     @from = params[:from]
 
     identificadores_destinatarios = @to.split(',') rescue []
     destinatarios = []
-    destinatarios << Destinatario.find_by_identificador( identificadores_destinatarios )
+    destinatarios_encontrados = Destinatario.find_by_identificador( identificadores_destinatarios )
+    destinatarios << destinatarios_encontrados if destinatarios_encontrados
+
     puts "DESTINATARIOS: #{ destinatarios }"
 
     @notificacoes = Notificacao.buscar_notificacoes(destinatarios, @from)
@@ -30,7 +34,9 @@ class NotificacaoController < ApplicationController
   end
 
   def marcar_como_visualizado
-    @account_id = params[:account_id]
+    config_current_tenant
+
+    @account_id = params[:account_key]
     @notificacao_id = params[:notificacao]
 
     @notificacao = Notificacao.find(@notificacao_id)
@@ -50,22 +56,34 @@ class NotificacaoController < ApplicationController
 
 
   def mostrar_notificacoes
-    puts "ACCOUNT ID:   #{params[:account_id]}" 
+    config_current_tenant
+
+    puts "ACCOUNT KEY:   #{params[:account_key]}" 
     puts "TO:   #{params[:to]}" 
     puts "FROM: #{params[:from]}"
 
     @from = params[:from]
     @to = params[:to]
-    @account_id = params[:account_id]
+    @account_id = params[:account_key]
 
     identificadores_destinatarios = @to.split(',') rescue []
 
     destinatarios = []
-    destinatarios << Destinatario.find_by_identificador( identificadores_destinatarios )
+    destinatarios_encontrados = Destinatario.find_by_identificador( identificadores_destinatarios )
+    destinatarios << destinatarios_encontrados if destinatarios_encontrados
     @notificacoes = Notificacao.buscar_notificacoes(destinatarios, @from)
 
     render :show_notificacoes, :layout => false
   end
 
+  def config_current_tenant
+    # BUSCA PELA CHAVE
+    @current_account = Account.find_by_key(params[:account_key])
+    # SE NAO ENCONTRAR, BUSCA PELO ID
+    @current_account = Account.find(params[:account_key]) unless @current_account rescue nil
+
+    puts "ACCOUNT CONFIGURADA: #{ @current_account.id rescue 'NENHUMA'} | PARAM @account_key: #{ params[:account_key] }"
+    set_current_tenant(@current_account)
+  end
 
 end

@@ -10,9 +10,15 @@ ActiveAdmin.register_page "Dashboard" do
     #
     columns do
       column do
-        panel "AccountID" do
-           ul do
-              li h4 "Seu AccountID é '#{ current_admin_user.account.id rescue 'ERRO: sem AccontID' }'"
+        panel "Account" do
+          ul do
+            li h3 "Seu AccountKey é '#{ current_admin_user.account.key rescue 'ERRO: sem AccontKey' }'"
+            li code "<div id='notification_bar'></div>" 
+            li code "<script src='#{request.protocol + request.host_with_port}/notifica/#{ current_admin_user.account.key rescue '{ERRO: sem AccontKey}' }/{destinatarios}/{usuário origem}' ></script>" 
+          end
+           ul do  
+              li p "Dados da conta: '#{ current_admin_user.account.label rescue 'ERRO: sem account' }'"
+              li p "Dados da conta: '#{ current_admin_user.account.id rescue 'ERRO: sem account' }'"
           end
         end
       end
@@ -23,7 +29,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Últimas notificações visualizadas" do
            ul do
             Visualizacao.all.map do |record|
-              li "Notificado '#{record.visto_por}' sobre '#{record.notificacao.titulo rescue nil}' às #{record.data_hora}"
+              li "Notificado '#{record.visto_por}' sobre '#{record.notificacao.titulo rescue nil}' -  #{ I18n.l record.data_hora}"
             end
           end
         end

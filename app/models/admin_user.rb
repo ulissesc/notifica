@@ -11,6 +11,7 @@ class AdminUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :account
+  validates :account, :presence => true
   # Setup accessible (or protected) attributes for your model
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :user_type, :account_id
