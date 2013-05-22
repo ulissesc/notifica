@@ -35,7 +35,8 @@ body {
  	color: lightgray;
  }
  .visualizado-btn{
- 	text-decoration: underline;
+  font-size: 12px;
+ 	text-decoration: none;
  }
 .visualizado-btn:hover{
  	text-decoration: underline;

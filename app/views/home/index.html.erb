@@ -7,17 +7,17 @@
 
         <p>e o seguinte JS:</p>
         <pre class="prettyprint lang-scm">
-          <%= h "<script src='#{request.protocol + request.host_with_port}/notifica/<ACCOUNT_ID>/<DESTINATARIO_1>,<DESTINATARIO_2>.../<USUARIO>' ></script>" %>
+          <%= h "<script src='#{request.protocol + request.host_with_port}/notifica/<ACCOUNT_KEY>/<DESTINATARIO_1>,<DESTINATARIO_2>.../<USUARIO>' ></script>" %>
         </pre>
 
         <p>exemplo:</p>
         <pre class="prettyprint lang-scm">
           
-          <%= h "ACCOUNT_ID: 123" %>
+          <%= h "ACCOUNT_KEY: qwertyuiasd" %>
           <%= h "DESTINATÁRIOS: sistemaX,usuario@email.com" %>
           <%= h "VISTO POR: usuario@email.com" %>
 
-          <%= h "<script src='#{request.protocol + request.host_with_port}/notifica/123/sistemaX,usuario@email.com/usuario@email.com' ></script>" %>
+          <%= h "<script src='#{request.protocol + request.host_with_port}/notifica/qwertyuiasd/sistemaX,usuario@email.com/usuario@email.com' ></script>" %>
 
         </pre>
 
