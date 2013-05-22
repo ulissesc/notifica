@@ -6,8 +6,11 @@ $(function() {
   	var noti = '<a class="botao_informacao_notificacao" id="informacao_notificacao"><span class="numero_notificacoes"><%= @notificacoes.count %></span> <%= plural( @notificacoes ) %></a>';
 
   	$('#notification_bar').html(noti);
+    $('#notification_bar').addClass("<%= 'sem-notificacao' if @notificacoes.empty? %>");
+    $('#notification_bar').addClass("<%= 'com-notificacao' unless @notificacoes.empty? %>");
+
     <% if not @current_account %>
-      $('#notification_bar').html("NENHUMA CONTA COM A CHAVE: <%= @account_id %>");
+      $('#notification_bar').html("ERRO: nenhuma conta com chave: <%= @account_id %>");
     <% end %>
 
 	$.getScript("<%= request.protocol + request.host_with_port %>/assets/bootstrap.popover.min.js?body=1", afterLoadJS); 
@@ -20,12 +23,6 @@ $(function() {
   			placement: 'bottom',
   			animation: 'true'
   		});
-  		/*$('#informacao_notificacao').on('click', function(){
-  			$(this).contents().find('.visualizado-btn').on('click', function(){
-  		 	alert(this);
-  		 });
-  		});
-  		*/
 	};
 
   	 function createStyleSheet(style){

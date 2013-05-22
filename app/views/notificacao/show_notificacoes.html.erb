@@ -43,8 +43,6 @@
 	  		 $.ajax( $(elem).attr('data-url') )
     			.done(function() {
     				$(elem).removeClass('notificacoes-nao-lidas').addClass('notificacoes-lidas');
-    				//$(elem).html('visualizado');
-    				//$(elem).hide();
     			})
     			.fail(function() { alert("Erro ao comunicar visualização."); })
 	  	});
