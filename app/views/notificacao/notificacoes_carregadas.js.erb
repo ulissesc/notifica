@@ -15,7 +15,7 @@ $(function() {
 	function afterLoadJS(){
 		$('#informacao_notificacao').popover({
   			title: '<%= humanizando( @notificacoes ) %>',
-  			content: "<iframe id='notification-iframe' allowtransparency='true' width='100%' onload='this.height = this.contentWindow.document.body.scrollHeight' frameBorder='0' border='0px' src='<%= request.protocol + request.host_with_port %>/mostrar_notificacoes/<%= @account_id %>/<%= @to %>/<%= @from %>'></iframe>",
+  			content: "<iframe id='notification-iframe' allowtransparency='true' width='100%' frameBorder='0' border='0px' src='<%= request.protocol + request.host_with_port %>/mostrar_notificacoes/<%= @account_id %>/<%= @to %>/<%= @from %>'></iframe>",
   			html: 'true',
   			placement: 'bottom',
   			animation: 'true'

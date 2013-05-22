@@ -9,7 +9,7 @@
 <body>
 
 <div class="lista_notificacao">
-	
+
 	<%= '<div class="notificacao-empty">nenhuma notificação</div>'.html_safe if @notificacoes.empty? %>
 	
 	<% @notificacoes.each do |notificacao| %>
@@ -37,18 +37,6 @@
 <script>
 
 	$(document).ready(function() {
-	  
-	  /* $(".visualizado-btn").each(function(index, elem){
-	  	$(elem).click(function(){
-	  		 $.ajax( $(elem).attr('data-url') )
-    			.done(function() {
-    				$(elem).parent('div.notificacao').removeClass('notificacoes-nao-lidas').addClass('notificacoes-lidas');
-    				$(elem).html('visualizado');
-    				$(elem).hide();
-    			})
-    			.fail(function() { alert("Erro ao comunicar visualização."); })
-	  	});
-	  }); */
 
 	   $(".notificacoes-nao-lidas").each(function(index, elem){
 	  	$(elem).click(function(){
@@ -64,9 +52,6 @@
 
 	});
 
-  resizeIframe = function(iframe) {
-    iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
-  }
 
 </script>
 
