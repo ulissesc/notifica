@@ -10,14 +10,19 @@
 
 <div class="lista_notificacao">
 	
+	<%= '<div class="notificacao-empty">nenhuma notificação</div>'.html_safe if @notificacoes.empty? %>
+	
 	<% @notificacoes.each do |notificacao| %>
-		<div class="notificacao <%= notificacao.data_visualizado_por( @from ) ? 'notificacoes-lidas' : 'notificacoes-nao-lidas' %> <%= class_por_tipo( notificacao ) %>">
+		<% data_visualizado = notificacao.data_visualizado_por( @from ) %>
+
+		<div class="notificacao <%= data_visualizado ? 'notificacoes-lidas' : 'notificacoes-nao-lidas' %> <%= class_por_tipo( notificacao ) %>" data-url='<%= "/visualizado/#{@account_id}/#{notificacao.id}/#{@from}" unless data_visualizado  %>'>
 			<%= notificacao.conteudo.html_safe %>
 
-			<% if notificacao.data_visualizado_por( @from ) %>
-				<span class="data-visualizado"> visto à <%= time_ago_in_words( notificacao.data_visualizado_por( @from ) ) %></span>
+			<% if data_visualizado %>
+				<br/>
+				<span class="data-visualizado"> visto à <%= time_ago_in_words( data_visualizado ) %></span>
 			<% else %>
-				<a class="visualizado-btn" href="#" data-url='<%= "/visualizado/#{@account_id}/#{notificacao.id}/#{@from}" %>'>ok</a>
+			
 			<% end %>
 
 		</div>
@@ -33,13 +38,25 @@
 
 	$(document).ready(function() {
 	  
-	  $(".visualizado-btn").each(function(index, elem){
+	  /* $(".visualizado-btn").each(function(index, elem){
 	  	$(elem).click(function(){
 	  		 $.ajax( $(elem).attr('data-url') )
     			.done(function() {
     				$(elem).parent('div.notificacao').removeClass('notificacoes-nao-lidas').addClass('notificacoes-lidas');
     				$(elem).html('visualizado');
     				$(elem).hide();
+    			})
+    			.fail(function() { alert("Erro ao comunicar visualização."); })
+	  	});
+	  }); */
+
+	   $(".notificacoes-nao-lidas").each(function(index, elem){
+	  	$(elem).click(function(){
+	  		 $.ajax( $(elem).attr('data-url') )
+    			.done(function() {
+    				$(elem).removeClass('notificacoes-nao-lidas').addClass('notificacoes-lidas');
+    				//$(elem).html('visualizado');
+    				//$(elem).hide();
     			})
     			.fail(function() { alert("Erro ao comunicar visualização."); })
 	  	});
