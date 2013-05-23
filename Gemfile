@@ -26,6 +26,9 @@ gem "meta_search",    '>= 1.1.0.pre'
 gem 'magic_encoding'
 gem 'rails-i18n'
 gem 'acts_as_tenant'
+gem 'activeadmin-dragonfly', github: 'stefanoverna/activeadmin-dragonfly'
+gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'
+gem "activeadmin-globalize3"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

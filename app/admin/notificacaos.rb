@@ -1,6 +1,10 @@
+# encoding: utf-8
+
 # -*- encoding : utf-8 -*-
 ActiveAdmin.register Notificacao do
     menu :label => "Notificações"
+
+
     filter :titulo
     filter :grupo_notificacao
     filter :tipo, :as => :check_boxes, :collection => ["NORMAL", "MEDIA", "ALTA"]
@@ -10,12 +14,13 @@ ActiveAdmin.register Notificacao do
 
 	form do |f|
     	f.inputs do
-    		f.input :titulo
-    		f.input :grupo_notificacao
-    		f.input :conteudo
+    		f.input :titulo, :label => "Título"
+    		f.input :grupo_notificacao, :label => "Grupo da Notificação"
+    		f.input :conteudo, as: :wysihtml5, :label => "Conteúdo"
             f.input :destinatarios, :as => :check_boxes
     		f.input :tipo, :as => :select, :collection => ["NORMAL", "MEDIA", "ALTA"]
     		f.input :manter_visivel 
+            f.input :ativo_ate, :label => "Ativo até"
     	end
     	f.actions
  	end
@@ -24,7 +29,9 @@ ActiveAdmin.register Notificacao do
         column("Título", :titulo)
         column("Grupo", :grupo_notificacao)
         column("Tipo", :tipo)
+        column("Manter Visivel", :manter_visivel)
+        column("Ativo até", :ativo_ate)
         default_actions
     end
   
-end
+end 

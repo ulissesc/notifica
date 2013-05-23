@@ -1,3 +1,19 @@
+GIT
+  remote: git://github.com/stefanoverna/activeadmin-dragonfly.git
+  revision: d39f4689c92b79d051bb079cd2a7d98359f00b83
+  specs:
+    activeadmin-dragonfly (0.0.2)
+      activeadmin
+      dragonfly
+
+GIT
+  remote: git://github.com/stefanoverna/activeadmin-wysihtml5.git
+  revision: e80c6cd5a1e76dd2fb5f36a3b146eb029577789a
+  specs:
+    activeadmin-wysihtml5 (0.3.6)
+      activeadmin
+      activeadmin-dragonfly
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -26,6 +42,9 @@ GEM
       meta_search (>= 0.9.2)
       rails (>= 3.0.0)
       sass (>= 3.1.0)
+    activeadmin-globalize3 (0.0.2)
+      activeadmin
+      globalize3
     activemodel (3.2.13)
       activesupport (= 3.2.13)
       builder (~> 3.0.0)
@@ -62,12 +81,19 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    dragonfly (0.9.15)
+      multi_json (~> 1.0)
+      rack
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
     fastercsv (1.5.5)
     formtastic (2.2.1)
       actionpack (>= 3.0)
+    globalize3 (0.3.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      paper_trail (~> 2)
     has_scope (0.5.1)
     hike (1.2.2)
     i18n (0.6.1)
@@ -95,6 +121,9 @@ GEM
     mime-types (1.23)
     multi_json (1.7.2)
     orm_adapter (0.4.0)
+    paper_trail (2.7.1)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     pg (0.15.1)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
@@ -155,6 +184,9 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  activeadmin-dragonfly!
+  activeadmin-globalize3
+  activeadmin-wysihtml5!
   acts_as_tenant
   coffee-rails (~> 3.2.1)
   jquery-rails

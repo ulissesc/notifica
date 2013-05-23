@@ -11,14 +11,19 @@ ActiveAdmin.register_page "Dashboard" do
     columns do
       column do
         panel "Account" do
-          ul do
-            li h3 "Seu AccountKey é '#{ current_admin_user.account.key rescue 'ERRO: sem AccontKey' }'"
-            li code "<div id='notification_bar'></div>" 
-            li code "<script src='#{request.protocol + request.host_with_port}/notifica/#{ current_admin_user.account.key rescue '{ERRO: sem AccontKey}' }/{destinatarios}/{usuário origem}' ></script>" 
+          br 
+          h3 "Seu AccountKey é " do
+            b "'#{ current_admin_user.account.key rescue 'ERRO: sem AccontKey' }'"
           end
-           ul do  
-              li p "Dados da conta: '#{ current_admin_user.account.label rescue 'ERRO: sem account' }'"
-              li p "Dados da conta: '#{ current_admin_user.account.id rescue 'ERRO: sem account' }'"
+          br 
+          h5 "Seu código"
+          code "<div id='notification_bar'></div>" 
+          br code "<script src='#{request.protocol + request.host_with_port}/notifica/#{ current_admin_user.account.key rescue '{ERRO: sem AccontKey}' }/{destinatarios}/{usuário origem}' ></script>" 
+          br
+          h5 "Dados da conta:"
+          ul do  
+              li p "Conta: '#{ current_admin_user.account.label rescue 'ERRO: sem account' }'"
+              li p "Conta ID: '#{ current_admin_user.account.id rescue 'ERRO: sem account' }'"
           end
         end
       end

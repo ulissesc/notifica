@@ -1,6 +1,5 @@
-# -*- encoding : utf-8 -*-
+# encoding: utf-8
 ActiveAdmin.setup do |config|
-
   # == Site Title
   #
   # Set the title that is displayed on the main layout
@@ -140,7 +139,7 @@ ActiveAdmin.setup do |config|
   #   config.register_stylesheet 'my_print_stylesheet.css', :media => :print
   #
   # To load a javascript file:
-  #   config.register_javascript 'my_javascript.js'
+  #   config.register_javascript 'my_javascript.js' 
 
 
   # == CSV options
@@ -207,5 +206,10 @@ ActiveAdmin.setup do |config|
   #
   # config.filters = true
 
+  config.namespace :admin do |admin|
+      admin.build_menu do |menu|
+        menu.add :label => "Home", :url => "/", :priority => 0
+      end
+    end
 
 end

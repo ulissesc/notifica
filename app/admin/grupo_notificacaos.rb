@@ -7,7 +7,6 @@ ActiveAdmin.register GrupoNotificacao do
   form do |f|                         
     f.inputs "Grupo de Notificações" do       
       f.input :descricao                  
-      f.input :identificador               
     end                               
     f.actions                         
   end  

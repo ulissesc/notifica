@@ -18,8 +18,8 @@
  */
 
 body {
-    background: url("body_bg.jpg") repeat scroll 0 0 #FDFDFD;
-    color: #888888;
+    background-color: #F5F5F5 !important;
+    color: #323537;
     font-family: Arial;
     padding-bottom: 40px;
     padding-top: 40px;

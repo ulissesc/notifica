@@ -3,7 +3,7 @@ class GrupoNotificacao < ActiveRecord::Base
   attr_accessible :descricao, :identificador
   belongs_to :account
   
-  validates :identificador, :uniqueness => true
+  # validates :identificador, :uniqueness => true
   acts_as_tenant(:account)
 
   def name

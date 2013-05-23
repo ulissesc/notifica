@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521122348) do
+ActiveRecord::Schema.define(:version => 20130522234653) do
 
   create_table "accounts", :force => true do |t|
     t.string   "label"
@@ -55,6 +55,20 @@ ActiveRecord::Schema.define(:version => 20130521122348) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "assets", :force => true do |t|
+    t.string   "storage_uid"
+    t.string   "storage_name"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "storage_width"
+    t.integer  "storage_height"
+    t.float    "storage_aspect_ratio"
+    t.integer  "storage_depth"
+    t.string   "storage_format"
+    t.string   "storage_mime_type"
+    t.string   "storage_size"
+  end
+
   create_table "destinatarios", :force => true do |t|
     t.string   "descricao"
     t.string   "identificador"
@@ -81,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20130521122348) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.integer  "account_id"
+    t.datetime "ativo_ate"
   end
 
   add_index "notificacaos", ["grupo_notificacao_id"], :name => "index_notificacaos_on_grupo_notificacao_id"
