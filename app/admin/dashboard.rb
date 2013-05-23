@@ -14,12 +14,7 @@ ActiveAdmin.register_page "Dashboard" do
           br 
           h3 "Seu AccountKey é " do
             b "'#{ current_admin_user.account.key rescue 'ERRO: sem AccontKey' }'"
-          end
-          br 
-          h5 "Seu código"
-          code "<div id='notification_bar'></div>" 
-          br code "<script src='#{request.protocol + request.host_with_port}/notifica/#{ current_admin_user.account.key rescue '{ERRO: sem AccontKey}' }/{destinatarios}/{usuário origem}' ></script>" 
-          br
+          end        
           h5 "Dados da conta:"
           ul do  
               li p "Conta: '#{ current_admin_user.account.label rescue 'ERRO: sem account' }'"
