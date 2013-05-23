@@ -14,7 +14,22 @@
 
         <p>e o seguinte JS:</p>
         <pre class="prettyprint lang-scm">
-          <%= h "<script src='#{request.protocol + request.host_with_port}/notifica/<ACCOUNT_KEY>/<DESTINATARIO_1>,<DESTINATARIO_2>.../<USUARIO_ATUAL>' ></script>" %>
+
+          <%= h "(function(){
+            var bsa = document.createElement('script');
+               bsa.type = 'text/javascript';
+               bsa.async = true;
+              
+               /* -- DADOS DA NOTIFICACAO -- */
+               bsa.account_key = '<ACCOUNT_KEY>';
+               bsa.to = '<DESTINATARIO_1>,<DESTINATARIO_2>...';
+               bsa.from = '<USUARIO_ATUAL>';
+              /* -- FIM -- */
+
+               bsa.src = '//notifica-app.herokuapp.com/notifica/'+bsa.account_key+'/'+ bsa.to+'/'+ bsa.from;
+            (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+          })();" %>
+
         </pre>
 
         <p>exemplo:</p>
@@ -22,9 +37,23 @@
           
           <%= h "ACCOUNT_KEY: qwertyuiasd" %>
           <%= h "DESTINATÁRIOS: sistemaX,usuario@email.com" %>
-          <%= h "VISTO POR: usuario@email.com" %>
+          <%= h "VISUALIZADO POR: usuario@email.com" %>
 
-          <%= h "<script src='#{request.protocol + request.host_with_port}/notifica/qwertyuiasd/sistemaX,usuario@email.com/usuario@email.com' ></script>" %>
+          <%= h "(function(){
+            var bsa = document.createElement('script');
+               bsa.type = 'text/javascript';
+               bsa.async = true;
+              
+               /* -- DADOS DA NOTIFICACAO -- */
+               bsa.account_key = 'qwertyuiasd';
+               bsa.to = 'sistemaX,usuario@email.com';
+               bsa.from = 'usuario@email.com';
+               /* -- FIM -- */
+              
+               bsa.src = '//notifica-app.herokuapp.com/notifica/' + bsa.account_key + '/' + bsa.to + '/' + bsa.from;
+              (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+            })();" %>
+
 
         </pre>
 
