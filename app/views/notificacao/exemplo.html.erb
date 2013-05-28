@@ -20,4 +20,19 @@
 
 
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="notifica/<%= conta_key %>/<%= destinatarios %>/<%= usuario_rand %>" ></script>
+<script>
+	(function(){
+        var bsa = document.createElement('script');
+           bsa.type = 'text/javascript';
+           bsa.async = true;
+          
+           /* -- DADOS DA NOTIFICACAO -- */
+           bsa.account_key = '<%= conta_key %>';
+           bsa.to = '<%= destinatarios %>';
+           bsa.from = '<%= usuario_rand %>';
+          /* -- FIM -- */
+
+           bsa.src = '<%= request.protocol + request.host_with_port %>/notifica/'+bsa.account_key+'/'+ bsa.to+'/'+ bsa.from;
+        (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+    })();
+</script>

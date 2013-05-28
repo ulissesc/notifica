@@ -14,7 +14,8 @@ ActiveAdmin.register_page "Dashboard" do
           br 
           h3 "Seu AccountKey é " do
             b "'#{ current_admin_user.account.key rescue 'ERRO: sem AccontKey' }'"
-          end        
+          end
+          br           
           h5 "Dados da conta:"
           ul do  
               li p "Conta: '#{ current_admin_user.account.label rescue 'ERRO: sem account' }'"

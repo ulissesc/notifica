@@ -42,6 +42,7 @@ body {
  .data-visualizado{
   font-size: 12px;
  	color: lightgray;
+  display: block;
  }
  .visualizado-btn{
   font-size: 12px;

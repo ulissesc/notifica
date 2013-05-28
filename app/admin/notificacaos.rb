@@ -19,7 +19,8 @@ ActiveAdmin.register Notificacao do
     		f.input :conteudo, as: :wysihtml5, :label => "Conteúdo"
             f.input :destinatarios, :as => :check_boxes
     		f.input :tipo, :as => :select, :collection => ["NORMAL", "MEDIA", "ALTA"]
-    		f.input :manter_visivel 
+    		f.input :manter_visivel
+            f.input :contar_como_nao_lido, :label => "Contar sempre como não lido"
             f.input :ativo_ate, :label => "Ativo até"
     	end
     	f.actions

@@ -26,7 +26,7 @@
                bsa.from = '<USUARIO_ATUAL>';
               /* -- FIM -- */
 
-               bsa.src = '//notifica-app.herokuapp.com/notifica/'+bsa.account_key+'/'+ bsa.to+'/'+ bsa.from;
+               bsa.src = '#{ request.protocol + request.host_with_port }/notifica/'+bsa.account_key+'/'+ bsa.to+'/'+ bsa.from;
             (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
           })();" %>
 
@@ -50,7 +50,7 @@
                bsa.from = 'usuario@email.com';
                /* -- FIM -- */
               
-               bsa.src = '//notifica-app.herokuapp.com/notifica/' + bsa.account_key + '/' + bsa.to + '/' + bsa.from;
+               bsa.src = '#{ request.protocol + request.host_with_port }/notifica/' + bsa.account_key + '/' + bsa.to + '/' + bsa.from;
               (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
             })();" %>
 

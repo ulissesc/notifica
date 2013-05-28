@@ -2,6 +2,8 @@
 ActiveAdmin.register AdminUser do     
   menu :label => "Usuários" 
   menu :if => proc{ current_admin_user.admin? }
+  
+  before_filter :current_user_admin?
 
   index do                            
     column :email                     

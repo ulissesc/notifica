@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
     set_current_tenant(current_account)
   end
 
+  def current_user_admin?
+  	redirect_to "/admin" unless current_admin_user.admin? 
+  end
+
 end

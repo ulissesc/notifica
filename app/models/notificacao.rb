@@ -9,7 +9,8 @@ class Notificacao < ActiveRecord::Base
   has_and_belongs_to_many :destinatarios, :join_table => "notificacoes_destinatarios", :class_name => "Destinatario"
   has_many :visualizacoes, :dependent => :destroy
 
-  attr_accessible :conteudo, :manter_visivel, :tipo, :titulo, :grupo_notificacao_id, :destinatario_ids, :ativo_ate
+  attr_accessible :conteudo, :manter_visivel, :tipo, :titulo, :grupo_notificacao_id, 
+    :destinatario_ids, :ativo_ate, :contar_como_nao_lido
 
   def display_name
   	self.titulo
@@ -34,8 +35,8 @@ class Notificacao < ActiveRecord::Base
         end
       end
     end
-
-    notificacoes
+    # Numero máximo de 10 notificações
+    notificacoes[0..10]
   end
 
 
