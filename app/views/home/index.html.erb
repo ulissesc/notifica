@@ -12,7 +12,7 @@
           <%= h '<div id="notification_bar"></div>' %>
         </pre>
 
-        <p>e o seguinte JS:</p>
+        <p>e o seguinte JS (é necessário ter jQuery):</p>
         <pre class="prettyprint lang-scm">
 
           <%= h "(function(){
@@ -32,12 +32,14 @@
 
         </pre>
 
-        <p>exemplo:</p>
+        <h5>exemplo:</h5>
+        <ul>
+          <li>ACCOUNT_KEY: <b>qwertyuiasd</b></li>
+          <li>DESTINATÁRIOS: <b>sistemaX,usuario@email.com</b></li>
+          <li>VISUALIZADO POR: <b>usuario@email.com</b></li>
+        </ul>
+                  
         <pre class="prettyprint lang-scm">
-          
-          <%= h "ACCOUNT_KEY: qwertyuiasd" %>
-          <%= h "DESTINATÁRIOS: sistemaX,usuario@email.com" %>
-          <%= h "VISUALIZADO POR: usuario@email.com" %>
 
           <%= h "(function(){
             var bsa = document.createElement('script');
@@ -54,27 +56,23 @@
               (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
             })();" %>
 
-
         </pre>
 
-
-        <p><a href="exemplo">Clique aqui</a> para ver funcionando
-            
-        </p>
+        <h3>
+          Para ver funcionando <a href="exemplo">clique aqui</a>   
+        </h3>
 
 
         <hr/>
 
       <div class="form_usuario">
         <a name="criar_usuario" id="criar_usuario" href="#"></a>
-       <%= render 'form_usuario' %>
+        <%= render 'form_usuario' %>
       </div>
 
       </div>
 
       <div id="push"></div>
-
-
 
 
       <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=sunburst"></script>
