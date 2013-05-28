@@ -20,6 +20,8 @@ class NotificacaoController < ApplicationController
     @from = params[:from]
 
     identificadores_destinatarios = @to.split(',') rescue []
+    identificadores_destinatarios.each { |e| e.strip! }
+
     destinatarios = []
     destinatarios_encontrados = Destinatario.find_by_identificador( identificadores_destinatarios )
     destinatarios << destinatarios_encontrados if destinatarios_encontrados
