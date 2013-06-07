@@ -11,22 +11,26 @@ class NotificacaoController < ApplicationController
   def buscar_notificacoes
     config_current_tenant
 
-    puts "ACCOUNT KEY:   #{params[:account_key]}" 
-    puts "TO:   #{params[:to]}" 
-    puts "FROM: #{params[:from]}"
-
     @account_id = params[:account_key]
     @to = params[:to]
     @from = params[:from]
 
+    puts "ACCOUNT KEY:   #{ @account_id }" 
+    puts "TO:   #{ @to }" 
+    puts "FROM: #{ @from }"
+
+
     identificadores_destinatarios = @to.split(',') rescue []
     identificadores_destinatarios.each { |e| e.strip! }
 
-    destinatarios = []
-    destinatarios_encontrados = Destinatario.find_by_identificador( identificadores_destinatarios )
-    destinatarios << destinatarios_encontrados if destinatarios_encontrados
+    puts "IDENTIFICADORES DESTINATARIOS: #{ identificadores_destinatarios }"
 
-    puts "DESTINATARIOS: #{ destinatarios }"
+    destinatarios_encontrados = Destinatario.where( :identificador => identificadores_destinatarios )
+    destinatarios = []
+    destinatarios << destinatarios_encontrados if destinatarios_encontrados
+    destinatarios.flatten!
+
+    puts "DESTINATARIOS (BUSCA): #{ destinatarios }"
 
     @notificacoes = Notificacao.buscar_notificacoes(destinatarios, @from)
 
@@ -71,9 +75,12 @@ class NotificacaoController < ApplicationController
     identificadores_destinatarios = @to.split(',') rescue []
 
     destinatarios = []
-    destinatarios_encontrados = Destinatario.find_by_identificador( identificadores_destinatarios )
+    destinatarios_encontrados = Destinatario.where( :identificador => identificadores_destinatarios )
     destinatarios << destinatarios_encontrados if destinatarios_encontrados
+    destinatarios.flatten!
     @notificacoes = Notificacao.buscar_notificacoes(destinatarios, @from)
+
+    puts "DESTINATARIOS (MOSTRAR): #{ destinatarios }"
 
     render :show_notificacoes, :layout => false
   end

@@ -24,19 +24,19 @@ ActiveAdmin.register Notificacao do
       norificacao_nova.ativo_ate = norificacao_nova.ativo_ate + 1.month if norificacao_nova.ativo_ate
       
       if norificacao_nova.save
-            flash[:notice] = "Notificação duplicada com sucesso"
+        flash[:notice] = "Notificação duplicada com sucesso"
       else
-            flash[:error] = "Falha ao duplicar notificacao"
+        flash[:error] = "Falha ao duplicar notificacao"
       end
 
         redirect_to edit_admin_notificacao_path(norificacao_nova.id)
     end
 
 
-
     action_item :only => :show do
         link_to('Fazer uma cópia para próximo mês', fazer_copia_prox_mes_admin_notificacao_path)
     end
+
 
 	form do |f|
     	f.inputs do
@@ -53,6 +53,7 @@ ActiveAdmin.register Notificacao do
     	end
     	f.actions
  	end
+
 
     index do
         title "OPA" 

@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 class Notificacao < ActiveRecord::Base
 
-  scope :ativos, where("(ativo_ate >= ? or ativo_ate is null) and (ativo_a_partir_de <= ? or ativo_a_partir_de is null)", Time.zone.now, Time.zone.now )
-  scope :inativos, where("ativo_ate <= ? or ativo_a_partir_de >= ? ", Time.zone.now, Time.zone.now )
+  scope :ativos, where("(ativo_ate >= ? or ativo_ate is null) and (ativo_a_partir_de <= ? or ativo_a_partir_de is null)", Time.zone.today, Time.zone.today )
+  scope :inativos, where("ativo_ate <= ? or ativo_a_partir_de >= ? ", Time.zone.today, Time.zone.today )
 
   # MULTI TENANT
   belongs_to :account
@@ -21,6 +21,7 @@ class Notificacao < ActiveRecord::Base
 
   def self.buscar_notificacoes(destinatarios, from)
 
+    puts "BUSCAR NOTIFICACOES P/ OS SEG DEST: #{destinatarios.inspect}"
     query = Notificacao.joins(:destinatarios)
     
     query = query.ativos 
