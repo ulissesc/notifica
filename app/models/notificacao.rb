@@ -2,7 +2,7 @@
 class Notificacao < ActiveRecord::Base
 
   scope :ativos, where("(ativo_ate >= ? or ativo_ate is null) and (ativo_a_partir_de <= ? or ativo_a_partir_de is null)", Time.zone.today, Time.zone.today )
-  scope :inativos, where("ativo_ate <= ? or ativo_a_partir_de >= ? ", Time.zone.today, Time.zone.today )
+  scope :inativos, where("ativo_ate < ? or ativo_a_partir_de > ? ", Time.zone.today, Time.zone.today )
 
   # MULTI TENANT
   belongs_to :account
