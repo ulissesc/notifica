@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
 class Notificacao < ActiveRecord::Base
 
+  scope :ativos, where("(ativo_ate >= ? or ativo_ate is null) and (ativo_a_partir_de <= ? or ativo_a_partir_de is null)", Time.zone.now, Time.zone.now )
+  scope :inativos, where("ativo_ate <= ? or ativo_a_partir_de >= ? ", Time.zone.now, Time.zone.now )
+
   # MULTI TENANT
   belongs_to :account
   acts_as_tenant(:account)
@@ -10,21 +13,23 @@ class Notificacao < ActiveRecord::Base
   has_many :visualizacoes, :dependent => :destroy
 
   attr_accessible :conteudo, :manter_visivel, :tipo, :titulo, :grupo_notificacao_id, 
-    :destinatario_ids, :ativo_ate, :contar_como_nao_lido
+    :destinatario_ids, :ativo_ate, :contar_como_nao_lido, :ativo_a_partir_de, :created_at
 
   def display_name
   	self.titulo
   end
 
-
   def self.buscar_notificacoes(destinatarios, from)
 
     query = Notificacao.joins(:destinatarios)
     
-    query = query.where("ativo_ate is null or ativo_ate < ?", Time.now)
+    query = query.ativos 
+    # = query.where("ativo_ate is null or ativo_ate < ?", Time.zone.now )
+    # query = query.where("ativo_a_partir_de is null or ativo_ate > ?", Time.zone.now )
     query = query.where("destinatarios.identificador in ( ? )", destinatarios.map(&:identificador))
     query.order("notificacaos.created_at DESC")
 
+    puts "WHERE VALUES: #{query.where_values}"
     notificacoes = []
     query.all.each do |notificacao|
       if notificacao.manter_visivel

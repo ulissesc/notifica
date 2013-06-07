@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130528120848) do
+ActiveRecord::Schema.define(:version => 20130607143015) do
 
   create_table "accounts", :force => true do |t|
     t.string   "label"
@@ -95,8 +95,9 @@ ActiveRecord::Schema.define(:version => 20130528120848) do
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
     t.integer  "account_id"
-    t.datetime "ativo_ate"
+    t.date     "ativo_ate"
     t.boolean  "contar_como_nao_lido"
+    t.date     "ativo_a_partir_de"
   end
 
   add_index "notificacaos", ["grupo_notificacao_id"], :name => "index_notificacaos_on_grupo_notificacao_id"

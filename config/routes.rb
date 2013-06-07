@@ -1,7 +1,8 @@
 # -*- encoding : utf-8 -*-
 Notifica::Application.routes.draw do
-  get "home/index"
+  
 
+  get "home/index"
   get "exemplo" => "notificacao#exemplo"
   root :to => "home#index"
 
@@ -64,14 +65,13 @@ Notifica::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-
   # EM USO ATUALMENTE
   match "notifica/:account_key/:to/:from" => "notificacao#buscar_notificacoes", :constraints => { :to => /.*/ }
 
   match  "mostrar_notificacoes/:account_key/:to/:from" => "notificacao#mostrar_notificacoes", :constraints => { :to => /.*/ }
   match  "visualizado/:account_key/:notificacao/:from" => "notificacao#marcar_como_visualizado", :constraints => { :to => /.*/ }
 
-  post "criar_novo_usuario" => "home#criar_novo_usuario", :as => :criar_novo_usuario
+  post "criar_novo_usuario" => "home#criar_novo_usuario", :as => :criar_novo_usuario 
 
   
 end
