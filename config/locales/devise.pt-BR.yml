@@ -60,6 +60,8 @@ pt-BR:
         other: "Não foi possível salvar %{resource}: %{count} erros."
 
   formtastic:
+    create: 'Criar %{model}'
+    update: 'Alterar %{model}'
     wysihtml5:
       command:
         bold: "Negrito"
@@ -111,3 +113,23 @@ pt-BR:
           anchor: "Âncora:"
           blank: "Este link abrirá em uma nova página/aba"
           your_text_here: "Seu texto aqui"
+  activerecord:
+    models:
+      notificacao:
+        one: "Notificação"
+        other: "Notificações"
+      visualizacao:
+        one: "Visualização"
+        other: "Visualizações"
+      destinatario:
+        one: "Destinatário"
+        other: "Destinatários"
+      grupo_notificacao:
+        one: "Grupo de Notificação"
+        other: "Grupos de Notificações"
+      admin_user:
+        one: "Usuário"
+        other: "Usuários"
+      account:
+        one: "Conta"
+        other: "Contas"
