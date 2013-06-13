@@ -12,6 +12,7 @@ ActiveAdmin.register Notificacao do
     scope :all
     scope :ativos
     scope :inativos
+    scope :serao_ativados
 
 
     member_action :fazer_copia_prox_mes, :method => :get do
@@ -64,6 +65,22 @@ ActiveAdmin.register Notificacao do
         column("Ativo a partir", :ativo_a_partir_de)
         column("Ativo até", :ativo_ate)
         default_actions
+    end
+
+    show do |elem|
+      attributes_table do
+        row :titulo
+        row :grupo_notificacao
+        row :tipo
+        row :manter_visivel
+        row :ativo_a_partir_de
+        row :ativo_ate
+        row :conteudo do
+           "#{ elem.conteudo }".html_safe
+        end
+        row :created_at
+        row :updated_at
+      end
     end
   
 end 
